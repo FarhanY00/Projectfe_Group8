@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>Contact App</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+
+   <!-- Custom styles for this template -->
+   <link href="css/navbar-fixed-top.css" rel="stylesheet">
+   <style>
+      .fab-container {
+         position: fixed;
+         bottom: 70px;
+         right: 10px;
+         z-index: 999;
+      }
+
+      .fab-icon-holder {
+         width: 50px;
+         height: 50px;
+         border-radius: 100%;
+         background: #016fb9;
+         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .fab-icon-holder:hover {
+         opacity: 0.8;
+      }
+
+      .fab-icon-holder i {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         height: 100%;
+         font-size: 25px;
+         color: #ffffff;
+      }
+
+      .fab {
+         width: 50px;
+         height: 50px;
+         background: #d23f31;
+      }
+
+      .fab-options {
+         list-style-type: none;
+         margin: 0;
+         position: absolute;
+         bottom: 70px;
+         right: 0;
+         opacity: 0;
+         transition: all 0.3s ease;
+         transform: scale(0);
+         transform-origin: 85% bottom;
+      }
+
+      .fab:hover+.fab-options,
+      .fab-options:hover {
+         opacity: 1;
+         transform: scale(1);
+      }
+
+
+      /* Slide CSS */      
+      * {
+         box-sizing: border-box;
+      }
+
+      body {
+         font-family: Verdana, sans-serif;
+      }
+
+      .mySlides {
+         display: none;
+      }
+
+      img {
+         vertical-align: middle;
+      }
+
+      /* Slideshow container */
+      .slideshow-container {
+         max-width: 1000px;
+         position: relative;
+         margin: auto;
+      }
+
+      /* Caption text */
+      .text {
+         color: #f2f2f2;
+         font-size: 15px;
+         padding: 8px 12px;
+         position: absolute;
+         bottom: 8px;
+         width: 100%;
+         text-align: center;
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+         color: #f2f2f2;
+         font-size: 12px;
+         padding: 8px 12px;
+         position: absolute;
+         top: 0;
+      }
+
+      /* The dots/bullets/indicators */
+      .dot {
+         height: 15px;
+         width: 15px;
+         margin: 0 2px;
+         background-color: #bbb;
+         border-radius: 50%;
+         display: inline-block;
+         transition: background-color 0.6s ease;
+      }
+
+      .active {
+         background-color: 717171;
+      }
+
+      /* Fading animation */
+      .fade {
+         -webkit-animation-name: fade;
+         -webkit-animation-duration: 1.5s;
+         animation-name: fade;
+         animation-duration: 1.5s;
+      }
+
+      @-webkit-keyframes fade {
+         from {
+            opacity: .4
+         }
+
+         to {
+            opacity: 1
+         }
+      }
+
+      @keyframes fade {
+         from {
+            opacity: .4
+         }
+
+         to {
+            opacity: 1
+         }
+      }
+
+      /* On smaller screens, decrease text size */
+      @media only screen and (max-width: 300px) {
+         .text {
+            font-size: 11px
+         }
+      }
+   </style>
+
+</head>
+
+<body>
+   <!-- Fixed navbar -->
+   <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+               aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand active" href="#Home">hpSave</a>
+         </div>
+
+         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+               <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                     aria-expanded="false"><span id="idSpan"> <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                     <li><a href="#logout">Logout</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+         <!--/.nav-collapse -->
+      </div>
+   </nav>
+
+   <div class="container">
+      <div class="jumbotron">
+         <div class="slideshow-container">
+            <div class="mySlides fade">
+               <div class="numbertext">1/3</div>
+               <img src="img\img_nature_wide.jpg" style="width: 100%">
+               <div class="text"></div>
+            </div>
+
+            <div class="mySlides fade">
+               <div class="numbertext">2/3</div>
+               <img src="img\img_snow_wide.jpg" style="width: 100%">
+               <div class="text"></div>
+            </div>
+
+            <div class="mySlides fade">
+               <div class="numbertext">3/3</div>
+               <img src="img\img_mountains_wide.jpg" style="width: 100%">
+               <div class="text"></div>
+            </div>
+         </div>
+         <div style="text-align: center;">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+         </div>
+      </div>
+
+      <!-- divInbox-->
+      <div class="well" id="divInbox" style="display: none">
+         <div class="row">
+            <div class="col-sm-12">
+
+               <p></p>
+               <table class="table table-condensed table-stripped table-hover" id="tblItem">
+                  <thead>
+                     <tr>
+                        <th>Index</th>
+                        <th>Title</th>
+                        <th>Delete</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <!-- divView-->
+      <div class="well" id="divView" style="display: none">
+         <div class="row">
+            <div class="col-sm-12">
+               <p></p>
+               <table class="table table-condensed table-stripped table-hover" id="tblView">
+                  <tbody>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- div add Item form-->
+      <div class="well" id="divAddItem" style="display: none">
+         <div class="row">
+            <div class="col-sm-6">
+               <form id="frmAddItem">
+                  <div class="col-lg-8 col-lg-offset-4"></div>
+                  <h3>Enter Details</h3>
+
+                  <div class="form-group">
+                     <label for="title" class="col-lg-4 control-label">title</label>
+                     <div>
+                        <input type="text" id="title" class="control-form" placeholder="Enter Title" required />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="username" class="col-lg-4 control-label">username</label>
+                     <div>
+                        <input type="text" id="username" class="control-form" placeholder="Enter Username/Email"
+                           required />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="password" class="col-lg-4 control-label">password</label>
+                     <div>
+                        <input type="text" id="password" class="control-form" placeholder="Enter Password" required />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="descript" class="col-lg-4 control-label">Description</label>
+                     <div>
+                        <input type="text" id="descript" class="control-form" placeholder="Enter your Description"
+                           required />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <div class="col-lg-8 col-lg-offset-4">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="reset" class="btn btn-info">Reset</button>
+                     </div>
+                  </div>
+
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <!-- div Edit contact form-->
+      <div class="well" id="divEditItem" style="display: none">
+         <div class="row">
+            <div class="col-sm-6">
+               <form id="frmEditItem">
+                  <div class="col-lg-8 col-lg-offset-4"></div>
+                  <h3>Modify Contact Details</h3>
+
+                  <div class="form-group">
+                     <label for="title0" class="col-lg-4 control-label">title</label>
+                     <div>
+                        <input type="text" id="title0" class="control-form" placeholder="Enter Title" />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="username0" class="col-lg-4 control-label">username</label>
+                     <div>
+                        <input type="text" id="username0" class="control-form" placeholder="Enter Username" />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="password0" class="col-lg-4 control-label">password</label>
+                     <div>
+                        <input type="text" id="password0" class="control-form" placeholder="Enter your password" />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="descript0" class="col-lg-4 control-label">Description</label>
+                     <div>
+                        <input type="text" id="descript0" class="control-form" placeholder="Enter your Description" />
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <div class="col-lg-8 col-lg-offset-4">
+                        <input type="hidden" id="itemId0" />
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="reset" class="btn btn-info">Reset</button>
+                     </div>
+                  </div>
+
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <!-- add Btn-->
+      <div id="divAddBtn" class="fab-container">
+         <div class="fab fab-icon-holder">
+            <i class="fas fa-question"><a href="#btnAddItem" role="button">
+                  <span class='glyphicon glyphicon glyphicon-plus' style="color:white;"></span></a></i>
+         </div>
+      </div>
+
+      <!-- Slide Function -->
+      <script type="text/javascript">
+         var slideIndex = 0;
+         showSlides();
+
+         function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+               slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+               dots[i].className = dots[i].className.replace("active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 5000);// Change image every 2 seconds
+         }
+      </script>
+
+      <script src="js/jquery-3.2.1.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/signals.min.js"></script>
+      <script src="js/hasher.min.js"></script>
+      <script src="js/crossroads.min.js"></script>
+      <script src="js/bootbox.min.js"></script>
+      <script src="js/index.js"></script>
+</body>
+
+</html>
